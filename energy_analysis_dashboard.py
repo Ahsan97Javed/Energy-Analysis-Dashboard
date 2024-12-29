@@ -34,7 +34,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load Data and Clean
-data = pd.read_csv(r"C:\Users\sakik\Downloads\Data Science Bootcamp\Final Project\Panel format.csv")
+data = pd.read_csv("Panel format.csv")
 data["Year"] = pd.to_datetime(data["Year"], format="%Y")
 
 data_cleaned = data.drop(columns=['coalprod_ej'])  # Dropping 'coalprod_ej' due to missing values
@@ -45,12 +45,12 @@ for col in categorical_cols:
     data_cleaned[col] = data_cleaned[col].fillna(data_cleaned[col].mode()[0])
 data_cleaned = data_cleaned.drop_duplicates()
 
-banner_image = Image.open(r"C:\Users\sakik\Downloads\Data Science Bootcamp\Final Project\Energy.jpg")
+banner_image = Image.open("Energy.jpg")
 st.image(banner_image, use_container_width=True)
 
 with st.sidebar:
     st.title("🔋 Energy Dashboard")
-    sidebar_image = Image.open(r"C:\Users\sakik\Downloads\Data Science Bootcamp\Final Project\Energy1.jpeg")
+    sidebar_image = Image.open("Energy1.jpeg")
     st.sidebar.image(sidebar_image, use_container_width=True)
     country = st.sidebar.selectbox("Select a country", data_cleaned["Country"].unique())
     st.markdown("---")
